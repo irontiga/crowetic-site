@@ -1,8 +1,8 @@
 # Site settings
 title: Crowetic computers
 email: irontiga@gmail.com
-description: "Crowetic's lit site"
-baseurl: "/crow-site" # the subpath of your site, e.g. /blog/
+description: "Crowetic's website"
+baseurl: "/crowetic-site" # the subpath of your site, e.g. /blog/
 url: "http://irontiga.github.com" # the base hostname & protocol for your site
 twitter_username: 
 github_username: irontiga
