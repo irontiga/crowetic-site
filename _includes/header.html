@@ -1,0 +1,49 @@
+<nav class="white grey-text">
+	<div class="nav-wrapper container">
+		<!--<ul id="nav-mobile" class="right hide-on-med-and-down">
+			<li><a href="sass.html">Sass</a></li>
+			<li><a href="badges.html">Components</a></li>
+			<li><a href="collapsible.html">JavaScript</a></li>
+		</ul>-->
+        <ul class="main-nav right hide-on-med-and-down">
+			{% for node in site.pages %}
+				{% if node.navGroup == "core" %}
+					<li class="waves-effect waves-light {% if page.url contains node.url %}active{% endif %}"><a class="internal-link grey-text" href="{{site.baseurl}}{{node.url}}">{{node.title}}</a></li>
+				{% endif %}
+			{% endfor %}
+			
+			
+			
+			<!-- <li class="waves-effect waves-light dropdown-button" data-activates='dropdown-docs'><a href='/docs/' class=" grey-text">Docs</a></li> -->
+
+			<!-- Dropdown Structure -->
+			<!--<ul id='dropdown-docs' class='dropdown-content'>
+			
+				{% for node in site.docs %}
+					{% assign urlArray = node.url | split: '/' %}
+					{% for piece in urlArray %}
+						{% if forloop.index == 3 %}
+							<li><a href="{{site.baseurl}}/docs/{{piece}}" class=" grey-text">{{piece}}</a></li>    -->
+							<!--{{ piece }}-->
+			<!--			{% endif %}
+					{% endfor %}
+				{% endfor %}
+			</ul>    -->
+			<div class="active-indicator"></div>
+		</ul>
+		
+		<!-- Mobile nav -->
+		<ul id="slide-out" class="side-nav">
+			{% for page in site.pages %}
+				{% if page.navGroup == "core" %}
+					<li><a class="internal-link grey-text" href="{{site.baseurl}}{{page.url}}">{{page.title}}</a></li>
+				{% endif %}
+			{% endfor %}
+		</ul>
+		<a href="#" data-activates="slide-out" class="button-collapse grey-text"><i class="material-icons">menu</i></a>
+		<a href="{{site.baseurl}}/" class="brand-logo mono internal-link grey-text"><img class="" src="{{site.baseurl}}/img/logo.png" style="height:44px; margin-bottom:-8px;"><!--{{site.title}}--></a>
+	</div>
+	<div id="preloader" class="progress">
+		<div class="indeterminate cyan"></div>
+	</div>
+</nav>

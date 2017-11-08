@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	{% include head.html %}
+
+	<body>
+		
+		<header>
+			{% include header.html %}
+		</header>
+
+		<main>
+			
+			<div id="main-content">
+				{{ content }}
+				
+				{% include footer.html %}
+			</div>
+			
+		</main>
+        
+        <div id="new-content"></div>
+		
+		<div class="ripple-wrapper">
+			<div class="ripple"></div>
+		</div>
+
+		{% include js.html %}
+		
+	</body>
+
+</html>
