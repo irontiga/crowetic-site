@@ -4,6 +4,7 @@
 // Mixins
 //@import "components/prefixer";
 //@import "components/mixins";
+//@import "components/color";
 @import "components/color";
 //Theme
 @import "theme";
@@ -54,20 +55,24 @@ footer.page-footer{
 nav{
 	ul.main-nav{
 		li{
+            font-family: 'Roboto Mono', monospace;
+			font-weight:500;
+			font-size:14px;
 			&:hover, &.active{
 				background-color: transparent;
 			}
-			a{
-				font-family: 'Roboto Mono', ;
-				font-weight:500;
-				font-size:14px;
+			a:not(.btn){
+				
 				text-transform: uppercase;
 				line-height:62px;
 				&:hover{
 					background-color: transparent;
 					border-bottom:2px solid rgba(0,0,0,0.5);
-				}
-			}
+                }
+            }
+            a.btn{
+                font-family: 'Roboto Mono', monospace;
+            }
 		}
 	}
 	
@@ -84,7 +89,7 @@ nav{
 		}
 	}
 	
-	a.button-collapse{
+	a.sidenav-trigger{
 		padding-right:40px;
 	}
 }
@@ -93,7 +98,7 @@ nav{
 	position:absolute;
 	margin:-2px 0 0 0;
 	background:#212121;
-	height:2px;
+	height:4px;
 	display:none;
 }
 
@@ -127,10 +132,6 @@ p{
 ::-webkit-scrollbar-thumb {
 	background:rgba(0,0,0,0.3);
 }
-
-
-
-
 
 .ripple-wrapper{
 	position:fixed;

@@ -1,7 +1,7 @@
 function materialInit(){
 	$(".button-collapse").sideNav({
 		closeOnClick: true
-	});
+    });
 	$('.dropdown-button').dropdown({
 		inDuration: 300,
 		outDuration: 225,
@@ -10,8 +10,9 @@ function materialInit(){
 		gutter: 0, // Spacing from edge
 		belowOrigin: true, // Displays dropdown below the button
 		alignment: 'right' // Displays dropdown with edge aligned to the left of button
-	}
-								  );
+    });
+    // Can't work because the window does not scroll (due to the use of flex box, which is nicer)
+    // $('.parallax').parallax();
 };
 
 $(document).ready(function(){
@@ -75,26 +76,39 @@ $('#div1').html('');
 */
 
 // Page changing function and transition handling
-function changePage(href){
+function changePage(href) {
+    var LOADED = false;
+    var TRANSITIONED = false;
 	$("#preloader").show();
-	$(".ripple").addClass("activating");
+    $(".ripple").addClass("activating");
+    $(".ripple").on("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function () {
+        TRANSITIONED = true;
+        if (LOADED) {
+            changePageComplete()
+        }
+    });
 	$('#new-content').load(href + " #main-content", function(response, status, xhr){
-		console.log("Status: " + status);
-		$(".ripple").on("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function(){
-            $('main').html($('#new-content').html());
-            //$('#new-content').empty();
-            //$('#new-content').contents().appendTo('main');
-			$(".ripple").addClass("disabling")   ;
-			setTimeout(function(){
-				$(".ripple").removeClass("activating disabling");
-				$("#preloader").hide();
-				$("main").stop().animate({ scrollTop: [0, "easeOutQuint"] }, 300);
-				
-			},300);
-			// Re init materialize things
-			materialInit()
-		});
-	});
+        console.log("Status: " + status);
+        LOADED = true;
+        if (TRANSITIONED) {
+            changePageComplete()
+        }
+    });
+}
+function changePageComplete() {
+    $('main').html($('#new-content').html());
+    //$('#new-content').empty();
+    //$('#new-content').contents().appendTo('main');
+    $(".ripple").addClass("disabling");
+    setTimeout(function () {
+        $(".ripple").removeClass("activating disabling");
+        $("#preloader").hide();
+        $("main").stop().animate({ scrollTop: [0, "easeOutQuint"] }, 300);
+
+    }, 300);
+    // Re init materialize things
+    materialInit()
+    
 }
 // Browser back button handler
 window.onpopstate = function(e){
