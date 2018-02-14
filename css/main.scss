@@ -16,7 +16,8 @@
 html{
 	background-color:white;
 		//lighten($primary-color, 15%);
-	color: lighten($primary-color, 15%);
+    // color: lighten($primary-color, 15%);
+    color: rgba(0,0,0,0.87)
 }
 body{
 	display:flex;
@@ -50,6 +51,10 @@ footer.page-footer{
 
 .container {
 	width: 95%;
+}
+
+.section {
+    padding: 76px;
 }
 
 nav{
